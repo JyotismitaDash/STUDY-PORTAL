@@ -1,0 +1,156 @@
+{% extends 'base.html' %} 
+{% load static %} 
+{% block content %}
+<!-- <style>
+  body{
+    background-image: linear-gradient(360deg,hsl(208, 81%, 82%),#FFFFFF);
+  }
+  h3 {
+    color: white;
+    font-weight: bolder;
+    background-image: linear-gradient(90deg, #1ABC9C,#3498DB);
+    padding: 15px;
+    border-radius: 10px;
+    margin-left: 200px;
+    margin-right: 200px;
+  }
+  
+    
+    h5{
+      color: white;
+      font-weight: bolder;
+      font-family: 'Times New Roman', Times, serif;
+      background-image: linear-gradient(90deg,#4A90E2, #8E44AD);
+      }
+      .card-body{
+        
+        color: blue;
+        font-size: larger;
+      }
+</style> -->
+<section class="container text-center">
+  <h3>STUDENT HUB</h3>
+
+  <hr> <br>
+  <div class="row">
+    <div class="col-md-3">
+      <a href="#">
+        <div class="card">
+          <img class="card-img-top" src="{% static 'images/todo.jpg' %}" alt="Notes image">
+          <div class="card-body">
+            <h5 class="card-title ">
+              To Do
+            </h5>
+            Add your to-do lists for your day and remove them as you finish
+          </div>
+        </div>
+      </a>
+    </div>
+  
+  <div class="col-md-3 ">
+    <a href="#">
+      <div class="card mt-20">
+        <img class="card-img-top" src="{% static 'images/books.jpg' %}" alt="Notes image">
+        <div class="card-body">
+          <h5 class="card-title ">
+            Books
+          </h5>
+          Browse books from a list of neatly organised book menu
+        </div>
+      </div>
+    </a>
+  </div>
+    <div class="col-md-3">
+      <a href="#">
+        <div class="card">
+          <img class="card-img-top" src="{% static 'images/notes.jpg' %}" alt="Notes image">
+          <div class="card-body">
+            <h5 class="card-title ">
+              Notes
+            </h5>
+            Create Notes to refer them later. They are stored permanently until deleted
+          </div>
+        </div>
+      </a>
+    </div>
+
+    <div class="col-md-3">
+      <a href="#">
+        <div class="card">
+          <img class="card-img-top" src="{% static 'images/homework.jpg' %}" alt="Notes image">
+          <div class="card-body">
+            <h5 class="card-title ">
+              Homework
+            </h5>
+            Add homeworks and assign them deadlines. They will be displayed prioritised by deadlines
+          </div>
+        </div>
+      </a>
+    </div>
+    
+  </div> 
+  <br><br><br>
+  <div class="row">
+    <div class="col-md-3">
+      <a href="#">
+        <div class="card">
+          <img class="card-img-top" src="{% static 'images/conversion.png' %}" alt="Notes image">
+          <div class="card-body">
+            <h5 class="card-title ">
+              Conversion
+            </h5>
+            Check out the conversion table, that helps you to convert measurements to more familiar ones of your choice.
+          </div>
+        </div>
+      </a>
+    </div>
+ 
+    <div class="col-md-3">
+      <a href="#">
+        <div class="card">
+          <img class="card-img-top" src="{% static 'images/DICTIONARY-.jpg' %}" alt="Notes image">
+          <div class="card-body">
+            <h5 class="card-title ">
+              Dictionary
+            </h5>
+            A vocabulary from a book is troubling you? No problem, enter the word, and the meaning will be displayed
+            almost instantaneously.
+          </div>
+        </div>
+      </a>
+    </div>
+    <div class="col-md-3">
+      <a href="#">
+        <div class="card">
+          <img class="card-img-top" src="{% static 'images/youtube.jpg' %}" alt="Notes image">
+          <div class="card-body">
+            <h5 class="card-title ">
+              Youtube
+            </h5>
+            Search Youtube and select your desired video to play it on youtube
+          </div>
+        </div>
+      </a>
+    </div>
+
+
+    
+    <div class="col-md-3">
+      <a href="#">
+        <div class="card">
+          <img class="card-img-top" src="{% static 'images/wikipedia.webp' %}" alt="Notes image">
+          <div class="card-body">
+            <h5 class="card-title ">
+              WikiPedia
+            </h5>
+            Homework and Assignments? Search wikipedia to get fast results
+          </div>
+        </div>
+      </a>
+    </div>
+
+
+    
+
+</section>
+{% endblock content %}
