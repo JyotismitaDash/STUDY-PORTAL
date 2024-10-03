@@ -4,12 +4,13 @@ from dashboard.forms import *
 from django.contrib import messages
 from django.views import generic
 from pytube import *
+import requests
 #from django.contrib.auth.decorators import login_required
 # Create your views here.
 def home(request):
     return render(request,'home.html')
-#Notes_Section
 
+#NotesSection------------------------------------------------------------------------------------
 def notes(request):
     if request.method=='POST':
         form=NotesForm(request.POST)
@@ -36,7 +37,7 @@ class NotesDetailView (generic.DetailView) :
     model = Notes
     template_name = 'notes_detail.html' 
 
-#Homework Section
+#HomeworkSection---------------------------------------------------------------------------------
 def homework(request):
     if request.method=='POST':
         form=HomeworkForm(request.POST)
@@ -78,15 +79,15 @@ def Delete_Homework(request, pk=None):
     homework.delete()
     messages.warning(request, f"Homework deleted from {request.user.username} Successfully")
     return redirect('/homework')
-#youtube section
 
 
+#youtube section-------------------------------------------------------------------------
 def youtube(request):
-    form = YoutubeForm()
+    form =IndexForm()
     result_list = []  
 
     if request.method == 'POST':
-        form = YoutubeForm(request.POST)
+        form = IndexForm(request.POST)
         text = request.POST['text']
         s = Search(text)  
         for video in s.results:  
@@ -114,6 +115,8 @@ def youtube(request):
 
     context = {'form': form, 'result_list': result_list}
     return render(request, 'youtube.html', context)
+
+#TO-DO SECTION---------------------------------------------------
 def To_do(request):
     if request.method == 'POST':
         form=Todoform(request.POST)
@@ -162,4 +165,40 @@ def delete_todo(request,pk):
     messages.warning(request, f"TODO deleted from {request.user.username} Successfully")
     return redirect('Todo')
 
-        
+#DICTIONARY SECTION------------------------------------------------------------------------
+def Dictionary(request):
+    return render(request,'dictionary.html')  
+#BOOK SECTION-----------------------------------------------------------------------------
+def book(request):
+    if request.method == 'POST':
+        form = IndexForm(request.POST)
+        if form.is_valid():
+            text = form.cleaned_data['text']
+            url = 'https://www.googleapis.com/books/v1/volumes?q=' + text
+            r = requests.get(url)
+            data = r.json()
+            result_list = []
+            for i in range(10):
+                if 'volumeInfo' in data['items'][i]:
+                    volumeinfo = data['items'][i]['volumeInfo']
+                    result_dict = {
+                        'title': volumeinfo.get('title', 'No title'),
+                        'subtitle': volumeinfo.get('subtitle', ''),
+                        'description': volumeinfo.get('description', 'No description'),
+                        'count': volumeinfo.get('pageCount', 'N/A'),
+                        'categories': volumeinfo.get('categories', []),
+                        'rating': volumeinfo.get('averageRating', 'N/A'),
+                        'thumbnail': volumeinfo.get('imageLinks', {}).get('thumbnail', ''),
+                        'preview': volumeinfo.get('previewLink', '#'),
+                    }
+                    result_list.append(result_dict)
+            context = {
+                'form': form,
+                'results': result_list,
+            }
+            return render(request, 'books.html', context)
+    else:
+        form = IndexForm()
+    
+    context = {'form': form}
+    return render(request, 'books.html', context)

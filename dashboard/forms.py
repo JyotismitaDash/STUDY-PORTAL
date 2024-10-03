@@ -11,7 +11,7 @@ class HomeworkForm(forms.ModelForm):
         model = Homework
         widgets={'due':DateInput()}
         fields=('subject','title','description','due','is_finished')
-class YoutubeForm(forms.Form):
+class IndexForm(forms.Form):
     text=forms.CharField(max_length=100,label="search")
 class Todoform(forms.ModelForm):
     class Meta:

@@ -13,5 +13,7 @@ urlpatterns=[
    path('todo/',To_do,name='Todo'),
    path('update_todo/<int:pk>/',update_todo,name='update_todo'),
    path('delete_todo/<int:pk>/', delete_todo, name='Delete_Todo'),
+   path('dict/',Dictionary,name='dict'),
+   path('book/',book,name='book')
 ]
 
